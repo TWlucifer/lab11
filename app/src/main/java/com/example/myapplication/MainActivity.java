@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 try {
                     dbrw.execSQL("INSERT INTO myTable(book,price) values(?,?)",new Object[]{ed_book.getText().toString(),ed_price.getText().toString()});
-                    Toast.makeText(MainActivity.this,"新增書名"+ed_book.getText().toString()+"價格"+ed_price.getText().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"新增書名"+ed_book.getText().toString()
+                            +"  價格"+ed_price.getText().toString(),Toast.LENGTH_SHORT).show();
                     ed_book.setText("");
                     ed_price.setText("");
                 }catch (Exception e){
@@ -56,15 +57,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btn_update.setOnClickListener(view -> {
-            if (ed_book.length()<1 || ed_price.length() < 1)
+            if (ed_book.length() < 1 || ed_price.length() < 1)
                 Toast.makeText(MainActivity.this,"欄位請勿流空",Toast.LENGTH_SHORT).show();
             else {
                 try {
                     dbrw.execSQL("UPDATE mytable SET price = "
                             + ed_price.getText().toString()
-                            +"WHERE book LIKE '"
-                            +ed_book.getText().toString()+"'");
-                    Toast.makeText(MainActivity.this,"更新書名"+ed_book.getText().toString()+"價格"+ed_price.getText().toString(),Toast.LENGTH_SHORT).show();
+                            +" WHERE book LIKE '"
+                            +ed_book.getText().toString() + "'");
+                    Toast.makeText(MainActivity.this,"更新書名" + ed_book.getText().toString() +
+                            "   價格" + ed_price.getText().toString(), Toast.LENGTH_SHORT).show();
+                    ed_book.setText("");
+                    ed_price.setText("");
                 }catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(MainActivity.this,"更新失敗"+e.getMessage(),Toast.LENGTH_SHORT).show();
